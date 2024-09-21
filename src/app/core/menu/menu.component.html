@@ -1,36 +1,69 @@
-<nav id="mainnav" class="mainnav navbar navbar-expand-lg navbar-light bg-light">
-  <ul class="menu">
-    <li class="home">
-      <a routerLink="/home">
-        <img height="50" width="50" [src]="'assets/images/hamroblog.png'" />
-      </a> 
-    </li>
-    <li>
-      <a href="javascrip:void(0)" (click)="navigateToContent('business')">Business</a>
-    </li>
-    <li>
-      <a href="javascrip:void(0);">Technology</a>
-    </li>
+<!-- <div class="d-flex justify-content-between logo-wrapper">
 
-    <li>
-      <a href="javascrip:void(0);">Health</a>
-    </li>
+  <div class="logo">
+    <a routerLink="/home">
+      <img src="assets/images/hamrovlog.png">
+    </a>
+  </div>
 
-    <li>
-      <a href="javascript:void(0);">Sports</a>
-      <!-- <ul class="submenu">
-        <li><a href="case-v1.html">Football</a></li>
-        <li><a href="case-v1.html">Cricket</a></li>
-      </ul> -->
-    </li>
-    <li>
-      <a href="javascript(0);;">News</a>
-      <!-- <ul class="submenu">
-        <li><a href="blog.html">News V1</a></li>
-      </ul> -->
-    </li>
-   
-    <li><a href="javascript(0);;" routerLink="/add-blog">Write</a></li>
-  </ul>
-  <!-- /.menu -->
-</nav>
+  <div>
+    <strong>Welcome, Kabin Dhital</strong>
+    <i class="fa fa-user-circle" aria-hidden="true"></i>
+  </div>
+</div> -->
+
+<header>
+  <div class="logo">
+    <a routerLink="/home">
+      <img src="assets/images/hamrovlog.png">
+    </a>
+  </div>
+  <nav [ngClass]="{'active': isMenuOpen}">
+    <ul>
+      <li>
+        <a href="javascrip:void(0)" (click)="navigateToContent('business')">Business</a>
+      </li>
+     
+  
+      <li>
+        <a href="javascrip:void(0);" (click)="navigateToContent('health')">Health</a>
+      </li>
+  
+      <li>
+        <a href="javascript:void(0);" (click)="navigateToContent('sport')">Sports</a>
+        <!-- <ul class="submenu">
+          <li><a href="case-v1.html">Football</a></li>
+          <li><a href="case-v1.html">Cricket</a></li>
+        </ul> -->
+      </li>
+      <li>
+        <a href="javascript:void(0);" (click)="navigateToContent('news')">News</a>
+        <!-- <ul class="submenu">
+          <li><a href="blog.html">News V1</a></li>
+        </ul> -->
+      </li>
+      <li>
+        <a href="javascript:void(0);" (click)="navigateToContent('education')">Education</a>
+        <!-- <ul class="submenu">
+          <li><a href="blog.html">News V1</a></li>
+        </ul> -->
+      </li>
+      <li>
+        <a href="javascript:void(0);" (click)="navigateToContent('other')">Others</a>
+        <!-- <ul class="submenu">
+          <li><a href="blog.html">News V1</a></li>
+        </ul> -->
+      </li>
+     
+      <li *ngIf="userName"><a href="javascript:void(0);" routerLink="/blogs">Write</a></li>
+      <li><a href="javascript:void(0);" routerLink="/login">{{userName ? 'Logout': 'Login'}}</a></li>
+      <li *ngIf="email === 'sagar.kabin26@gmail.com'"><a href="javascript:void(0);" routerLink="/blogs/users">Users</a></li>
+      <li [class.hb__username-section]="userName">
+        <!-- <a href="javascript:void(0);" routerLink="/login">Hi, Kabin</a> &nbsp; -->
+        <small *ngIf="!userName" class="fa fa-user-circle" aria-hidden="true"></small>
+        <small class="hb__userName" *ngIf="userName">{{userName}}</small>
+      </li>
+    </ul>
+  </nav>
+  <div class="menu-icon" (click)="toggleMenu()">&#9776;</div>
+</header>

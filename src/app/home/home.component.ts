@@ -7,20 +7,6 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  object = {
-    firstName: 'Jon',
-    lastName: 'Deo',
-    age: new Date('199709-16'),
-    address: {
-      addressLine1: 'Kathmandu',
-      addressLine2: 'Basundhara',
-      person: {
-        fatherName: 'Darryl',
-        motherName: 'Deo'
-      }
-    }
-  }
-
   constructor() { }
 
   ngOnInit(): void {

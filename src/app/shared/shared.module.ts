@@ -5,23 +5,21 @@ import { SharedRouteModule } from './shared.routing';
 import { FooterComponent } from '../footer/footer.component';
 import { FormsModule } from '@angular/forms';
 import { MainModule } from '../components/main.module';
-import { ButtonComponent } from '../components/shared/button/button.component';
-import { AppMainSharedModule } from '../components/shared/button/main-shared.module';
-
+import { ButtonComponent } from '../components/shared/common/button/button.component';
+import { AppMainSharedModule } from '../components/shared/common/main-shared.module';
+import { TooltipModule  } from 'ngx-bootstrap/tooltip';
 
 
 @NgModule({
   declarations: [
     CommonBlogComponent,
-    FooterComponent,
-    // ButtonComponent
   ],
   imports: [
     CommonModule,
     SharedRouteModule,
     FormsModule,
-    AppMainSharedModule
-    // MainModule
+    AppMainSharedModule,
+    TooltipModule
   ]
 })
 export class SharedModule { }

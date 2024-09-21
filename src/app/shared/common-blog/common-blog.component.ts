@@ -1,9 +1,11 @@
 import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
-import { AfterViewChecked, AfterViewInit, Component, OnDestroy, OnInit } from '@angular/core';
+import { AfterViewChecked, AfterViewInit, Component, Injector, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subject, takeUntil } from 'rxjs';
 import { CommentModel, RatingModel } from 'src/app/components/models/rating.model';
 import { AddBlogService } from 'src/app/components/services/add-blog.service';
+import { AppBaseComponent } from 'src/app/components/shared/common/app-base/app-base.component';
+import { ModalComponent } from 'src/app/components/shared/common/modal/modal.component';
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -11,14 +13,18 @@ import { environment } from 'src/environments/environment';
   templateUrl: './common-blog.component.html',
   styleUrls: ['./common-blog.component.scss']
 })
-export class CommonBlogComponent implements OnInit, OnDestroy, AfterViewInit {
+export class CommonBlogComponent extends AppBaseComponent implements OnInit, OnDestroy, AfterViewInit {
   destroyed$ = new Subject<boolean>();
   name: string = '';
   _id: string  = '';
   blogData: any;
   comment: string  = '';
   filePath = environment.filePath;
+  createdDate = new Date();
   comments: any[] = [];
+  showloader = true;
+  disabled = false;
+
   starRating = [
     {setRating: false, number: 1},
     {setRating: false, number: 2},
@@ -30,8 +36,10 @@ export class CommonBlogComponent implements OnInit, OnDestroy, AfterViewInit {
     private activateRoute: ActivatedRoute,
     private blogService: AddBlogService,
     private route: Router,
-
-  ) { }
+    protected injector: Injector
+  ) { 
+    super(injector)
+  }
   
   ngOnInit(): void {
     this.name = this.activateRoute.snapshot.params['name'];
@@ -45,13 +53,14 @@ export class CommonBlogComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   getBlog() {
+    this.showloader = true;
     this.blogService.getBlogById(this._id)
     .pipe(takeUntil(this.destroyed$))
     .subscribe((result: any) => {
+      this.showloader = false;
       const { data, comments } = result;
       if(data) {
         this.blogData = data;
-        console.log(this.blogData, comments)
         this.comments = comments;
         // this.getAllRatingById();
       }
@@ -61,18 +70,18 @@ export class CommonBlogComponent implements OnInit, OnDestroy, AfterViewInit {
 
   }
  
-
+  isRateSet = false;
   saveRating(value: number) {
     let ratingModel = new RatingModel(this._id, value);
     this.blogService.setRating(ratingModel)
     .pipe(takeUntil(this.destroyed$))
     .subscribe(result => {
-      console.log(result);
+      this.isRateSet = true;
     }, error => {
-      this.loadError(error)
+      this.loadError(error);
+      this.isRateSet = false;
     })
   }
-  disabled = false
 
   createComments() {
     if(!this.comment) return;
@@ -101,6 +110,7 @@ export class CommonBlogComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   setRating(rating: number) {
+    this.isRateSet = true;
     this.starRating.forEach(element => {
         element.setRating = false;
     });
@@ -114,8 +124,18 @@ export class CommonBlogComponent implements OnInit, OnDestroy, AfterViewInit {
     }
   }
 
+  openBookmark() {
+    let data = {
+      blogid: this._id,
+    }
+    this.openModalWithComponent(ModalComponent, data, 'modal-dialog modal-dialog-centered');
+   this.bsModalRef?.content.closeDialog.subscribe((result: any) => {
+    console.log('call your parent here');
+   })
+  }
+
   loadError(error: HttpErrorResponse) {
-    console.log(error);
+    this.showloader = false;
   }
 
 

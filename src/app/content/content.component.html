@@ -3,142 +3,71 @@
     <div class="row hb hb-main-wrapper">
         <div class="col-8">
             <div class="hb__lable-wrapper row">
-                <div class="d-flex col-6 hb__sections" *ngFor="let d of data; let i = index;" (click)="getBlogsById(d)">
-                    <span>
-                        <img  src="{{d.imgPath[0]}}" alt="Loading..." class="hb__content-image position-relative" />
-                    </span>
-                    <span>
-                        <label>
-                           {{d.title}}
-                        </label>
-                    </span>
 
-                </div>
+                <!-- loader starts here -->
+                <ng-container *ngIf="showloader">
+                    <div class="hb__content-loader" *ngFor="let l of [1,2,3]">
+                        <app-loader [contentStyle]="{height: '250px'}"></app-loader>
+                        <app-loader [contentStyle]="{'margin-top': '-26px'}"></app-loader>
+                    </div>
+                </ng-container>
+                <!-- loader ends here -->
 
-                <!-- <div class="d-flex col-6 hb__sections">
-                    <span>
-                        <img  src="assets/images/fifa.jpg" alt="Loading..." class="hb__content-image position-relative" />
-                    </span>
-                    <span>
-                        <label>
-                            Fact About the World War 2 and ongoing war between Hamas and Isreal
-                            
-                        </label>
-                    </span>
-                </div>
-
-                <div class="d-flex col-6 hb__sections">
-                    <span>
-                        <img  src="assets/images/fifa.jpg" alt="Loading..." class="hb__content-image position-relative" />
-                    </span>
-                    <span>
-                        <label>
-                            Fact About the World War 2 and ongoing war between Hamas and Isreal
-                            
-                        </label>
-                    </span>
-                </div>
-
-                <div class="d-flex col-6 hb__sections">
-                    <span>
-                        <img  src="assets/images/fifa.jpg" alt="Loading..." class="hb__content-image position-relative" />
-                    </span>
-                    <span>
-                        <label>
-                            Fact About the World War 2 and ongoing war between Hamas and Isreal
-                        </label>
-                    </span>
-                </div>
-
-                <div class="d-flex col-6 hb__sections">
-                    <span>
-                        <img  src="assets/images/fifa.jpg" alt="Loading..." class="hb__content-image position-relative" />
-                    </span>
-                    <span>
-                        <label>
-                            Fact About the World War 2 and ongoing war between Hamas and Isreal
-                            
-                        </label>
-                    </span>
-                </div>
-
-                <div class="d-flex col-6 hb__sections">
-                    <span>
-                        <img  src="assets/images/fifa.jpg" alt="Loading..." class="hb__content-image position-relative" />
-                    </span>
-                    <span>
-                        <label>
-                            Fact About the World War 2 and ongoing war between Hamas and Isreal
-                            
-                        </label>
-                    </span>
-                </div>
-
-                <div class="d-flex col-6 hb__sections">
-                    <span>
-                        <img  src="assets/images/fifa.jpg" alt="Loading..." class="hb__content-image position-relative" />
-                    </span>
-                    <span>
-                        <label>
-                            Fact About the World War 2 and ongoing war between Hamas and Isreal
-                            
-                        </label>
-                    </span>
-                </div>
-
-                <div class="d-flex col-6 hb__sections">
-                    <span>
-                        <img  src="assets/images/fifa.jpg" alt="Loading..." class="hb__content-image position-relative" />
-                    </span>
-                    <span>
-                        <label>
-                            Fact About the World War 2 and ongoing war between Hamas and Isreal
-                            
-                        </label>
-                    </span>
-                </div>
-
-                <div class="d-flex col-6 hb__sections">
-                    <span>
-                        <img  src="assets/images/fifa.jpg" alt="Loading..." class="hb__content-image position-relative" />
-                    </span>
-                    <span>
-                        <label>
-                            Fact About the World War 2 and ongoing war between Hamas and Isreal
-                        </label>
-                    </span>
-                </div> -->
-
+                <ng-container *ngIf="!showloader">
+                    <div class="d-flex col-6 hb__sections" *ngFor="let d of data; let i = index;" (click)="getBlogsById(d)">
+                        <span>
+                            <img  src="{{d.imgPath[0]}}" alt="Loading..." class="hb__content-image position-relative" />
+                        </span>
+                        <span>
+                            <label>
+                               {{d.title}}
+                            </label>
+                        </span>
+    
+                    </div>
+                </ng-container>
+                
             </div>
         </div>
 
-        <div class="col-4">
-            <div class="hb__second-section hb-aside-trending">
-                <ul class="list-group">
-                    <li class="list-group-item text-center hb_aside-trending"><strong>Recommaned</strong></li>
-                    <li class="list-group-item">Fact About the World War 2 and ongoing war between Hamas and Isreal Fact About the World War 2 and ongoing war between Hamas and Isreal</li>
-                    <li class="list-group-item">Dapibus ac facilisis in</li>
-                    <li class="list-group-item">Morbi leo risus</li>
-                    <li class="list-group-item">Porta ac consectetur ac</li>
-                    <li class="list-group-item">Vestibulum at eros</li>
-                  </ul>
+       
+
+        <ng-container >
+            <div class="col-4">
+
+                <ng-container *ngIf="showloader">
+                    <app-loader [contentStyle]="{height:'250px'}"></app-loader>
+                    <app-loader [contentStyle]="{height:'250px'}"></app-loader>
+                </ng-container>
+
+                <ng-container *ngIf="!showloader">
+                    <div class="hb__second-section hb-aside-trending">
+                        <ul class="list-group">
+                            <li class="list-group-item text-center hb_aside-trending"><strong>Recommaned</strong></li>
+                            <li *ngFor="let r of blogList; let i = index" class="list-group-item" (click)="getBlogsById(r)">
+                                {{r.title}}
+                            </li>
+                          </ul>
+                    </div>
+        
+                    <div class="hb__second-section hb-aside-trending mt-3 mb-3">
+                        <ul class="list-group">
+                            <li class="list-group-item text-center hb_aside-trending"><strong>Trending</strong></li>
+                            <li *ngFor="let r of trendingTopic; let i = index" class="list-group-item" (click)="getBlogsById(r)">
+                                {{r.title}}
+                            </li>
+                          </ul>
+                    </div>
+                </ng-container>
+               
+    
+    
             </div>
-
-            <div class="hb__second-section hb-aside-trending mt-3 mb-3">
-                <ul class="list-group">
-                    <li class="list-group-item text-center hb_aside-trending"><strong>Trending</strong></li>
-                    <li class="list-group-item">Fact About the World War 2 and ongoing war between Hamas and Isreal Fact About the World War 2 and ongoing war between Hamas and Isreal</li>
-                    <li class="list-group-item">Dapibus ac facilisis in</li>
-                    <li class="list-group-item">Morbi leo risus</li>
-                    <li class="list-group-item">Porta ac consectetur ac</li>
-                    <li class="list-group-item">Vestibulum at eros</li>
-                  </ul>
-            </div>
-
-
-        </div>
-
+        </ng-container>
     </div>
+</div>
 
+<div class="hamro__footer">
+<app-footer></app-footer>
 </div>
 

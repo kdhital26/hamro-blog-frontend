@@ -4,9 +4,10 @@ import { AddBlogComponent } from './add-blog/add-blog.component';
 import { MainRoutingModule } from './main-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
-import { ButtonComponent } from './shared/button/button.component';
+import { ButtonComponent } from './shared/common/button/button.component';
 import { ListBlogComponent } from './list-blog/list-blog.component';
-import { AppMainSharedModule } from './shared/button/main-shared.module';
+import { AppMainSharedModule } from './shared/common/main-shared.module';
+import { UsersComponent } from './users/users.component';
 
 
 
@@ -14,7 +15,8 @@ import { AppMainSharedModule } from './shared/button/main-shared.module';
   declarations: [
     AddBlogComponent,
     // ButtonComponent,
-    ListBlogComponent
+    ListBlogComponent,
+    UsersComponent,
   ],
   imports: [
     CommonModule,

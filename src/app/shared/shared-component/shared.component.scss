@@ -16,6 +16,12 @@ $hover-color:#116D6E;
         color: $hover-color
     }
 
+    .hb__heading-wrapper {
+        display: flex;
+        justify-content: center;
+        text-align: center;
+    }
+
     .vr{
         border-left: 1px solid #aeaeae;
         height: 100%;
@@ -23,7 +29,6 @@ $hover-color:#116D6E;
 
     .right-0{
         right: 0;
-        position: sticky;
         top: 0;
         bottom: 0;
         height: 100%;
@@ -91,7 +96,33 @@ $hover-color:#116D6E;
             cursor: pointer;
         }
     }
-
-
 }
 
+// for bigger screen
+@media (min-width:770px) { 
+    .hb-div__wrapper {
+        display: flex;
+    }
+    .right-0 {
+        position: sticky;
+    }
+}
+
+//for mobile screen
+@media (max-width:770px) {
+    .hb-div__wrapper {
+        display: grid;
+    }
+
+    .hb__p-section{
+        text-align: center;
+        margin-left: 22px;
+
+    }
+    .hb__img-section{
+        text-align: center;
+        object-fit: contain !important;
+        height: fit-content;
+        margin-left: 22px;
+    }
+}

@@ -1,0 +1,9 @@
+<button [class.disabled]="showLoader" [class]="addClass" class="button" [style]="style" (click)="emitValue($event)">
+   <ng-container *ngIf="!showLoader else hasLoader">
+        <ng-content></ng-content>
+        {{btnLable}}
+   </ng-container> 
+   <ng-template #hasLoader>
+     <span class="loader" ></span>
+   </ng-template>
+</button> 

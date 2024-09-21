@@ -1,14 +1,8 @@
-$base-color: #468B97;
-
-
-.footer-wrapper{
-    background-color: $base-color;
-   //background-color: #203787 !important;
-}
-
-
-button :hover{
-   color: none !important; 
+.footer-wrapper {
+   background-color: hsl(218, 45%, 58%);
+   color: #fff;
+   padding: 20px 0; 
+   
 }
 
 hr {
@@ -16,35 +10,150 @@ hr {
    opacity: 1;
 }
 
-button {
+/* about us */
+
+.about-us span{
+   font-size: 19px;
+}
+.about-us p{
+   font-size: 15px;
+}
+
+ /* Underline Animation */
+.about-us h5 {
    color: #fff;
+   position: relative;
+   cursor: pointer;
+   display: inline-block;
+  
+}
+
+.about-us h5::after {
+   content: '';
+   position: absolute;
+   width: 100%;
+   height: 2px; /* Adjust the thickness of the underline */
+   background-color: #fff; /* Color of the underline */
+   bottom: 0;
+   left: 0;
+   transform-origin: bottom right;
+   transform: scaleX(0);
+   transition: transform 0.3s ease-in-out;
+}
+
+.about-us h5:hover::after {
+   transform-origin: bottom left;
+   transform: scaleX(1);
+}
+
+
+
+
+
+/* Contact Information */
+.contact h5 {
+   color: #ffffff;
+   margin-bottom: 10px;
+}
+.contact h5 {
+   color: #fff;
+   position: relative;
+   cursor: pointer;
+   display: inline-block;
+}
+
+.contact h5::after {
+   content: '';
+   position: absolute;
+   width: 100%;
+   height: 2px; /* Adjust the thickness of the underline */
+   background-color: #fff; /* Color of the underline */
+   bottom: 0;
+   left: 0;
+   transform-origin: bottom right;
+   transform: scaleX(0);
+   transition: transform 0.3s ease-in-out;
+}
+
+.contact h5:hover::after {
+   transform-origin: bottom left;
+   transform: scaleX(1);
+}
+
+
+.contact p {
+   color: #ffffff;
+   margin-bottom: 4px;
+   
+}
+
+.contact i {
+   color: #fff;
+   margin-right: 5px;
+}
+
+.contact i {
+   font-size: 1.2em;
+   margin-bottom: 5px;
+}
+
+.contact a {
+   color: #fff;
+   
+   
+}
+
+.contact a:hover {
+   color: #dc1212;
+}
+
+
+/*Social Media icons */
+
+.social-icons {
    display: flex;
-   align-items: center;
+   flex-direction: column;
 }
 
-.col-auto button span {
-   font-size: 30px;
-   line-height: 15px;
-   margin-left: 5px;
-   margin-top: -5px;
-
-}
-
-.btn-outline-light a {
+.social-icons a {
+   color: #fff;
    text-decoration: none;
-   color: #FFFFFF !important;
-   transition: 0.5s ease-in;
+   margin-bottom: 10px; 
+   font-size: 1.2em; 
 }
 
-.btn-outline-light a:hover{
-   text-decoration: none;
-   color: #000000 !important;
+.social-icons a:hover {
+   color: #bbb;
+}
+.social-media h5{
+   margin-bottom: 20px;
+}
+.social-media h5 {
+   color: #fff;
+   position: relative;
+   cursor: pointer;
+   display: inline-block;
 }
 
-.abs-addres-section > p {
-   line-height: 8px;
+.social-media h5::after {
+   content: '';
+   position: absolute;
+   width: 100%;
+   height: 2px; /* Adjust the thickness of the underline */
+   background-color: #fff; /* Color of the underline */
+   bottom: 0;
+   left: 0;
+   transform-origin: bottom right;
+   transform: scaleX(0);
+   transition: transform 0.3s ease-in-out;
 }
 
-.abs-addres-section p > i {
-   font-size: 1.25em;
+.social-media h5:hover::after {
+   transform-origin: bottom left;
+   transform: scaleX(1);
 }
+
+
+
+
+

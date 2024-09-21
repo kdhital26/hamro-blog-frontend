@@ -14,51 +14,62 @@ import { CommenModel } from '../model/common.model';
 export class SharedComponent implements OnInit {
   public destroye$ = new Subject<any>();
   public blogList: any[] = [];
+  public loaderCount = [1,2,3,4,5];
   public filePath: string = environment.filePath;
   public commonModel = new CommenModel();
+  public showLoader = true;
   constructor(
     private route: Router,
     private activateRoute: ActivatedRoute,
     private addBlogService: AddBlogService,
-  ) { }
+  ) {
+    this.getLatesTopic();
+   }
   blogContent: any[] = []
   latestTopic: any[] = []
   ngOnInit(): void {
-
     this.getAllBlogs();
+    this.getAllTopic();
   }
 
   /*
    get all added blogs here
    */
    getAllBlogs() {
+    this.showLoader = true;
     this.addBlogService.getAllBlogs()
     .pipe(takeUntil(this.destroye$))
     .subscribe((result: any) => {
+      this.showLoader = false;
       const {body: {data}} = result;
       for(let i = 0; i < data.length; i++) {
         data[i].description = data[i].description.split(environment.splitTag);
         data[i].imagePath = data[i].cloudinaryPath.split(',');
       }
       this.blogList = data;
-      this.getAllTopic();
-      this.getLatesTopic();
     }, error => {
+      this.showLoader = false;
       console.log(error);
     })
    }
 
+   showTrendingTopicLoader = true;
+   showLatestTopicLoader = true;
+
    getAllTopic() {
+   this.showTrendingTopicLoader = true;
     let trendingTopic = this.addBlogService.getAllTrendingTopic();
     forkJoin([trendingTopic]).pipe(takeUntil(this.destroye$))
     .subscribe(trendingTopicResult => {
       this.loadData(trendingTopicResult[0], 'trendingTopic')
     }, error => {
-      console.log(error, 'error');
+      this.loadError(error);
+
     })
    }
 
    getLatesTopic() {
+    this.showLatestTopicLoader = true;
       this.addBlogService.getLatestTopic(this.commonModel)
       .pipe(takeUntil(this.destroye$))
       .subscribe(result => {
@@ -67,12 +78,13 @@ export class SharedComponent implements OnInit {
         this.loadError(error);
       })
    }
-
    loadData(value: any, type?: string) {
     let { body: {data} } = value;
     if(type === 'trendingTopic') {
+      this.showTrendingTopicLoader = false;
       this.blogContent = data;
     } else if(type === 'getLatest') {
+      this.showLatestTopicLoader = false;
       for(let i = 0; i < data.length; i++) {
         data[i].imagePath = data[i].cloudinaryPath.split(',');
       }
@@ -83,7 +95,9 @@ export class SharedComponent implements OnInit {
    }
 
    loadError(error: HttpErrorResponse) {
-
+    this.showLoader = false;
+    this.showLatestTopicLoader = false;
+    this.showTrendingTopicLoader = false;
    }
 
   gotoBlog(data: any) {

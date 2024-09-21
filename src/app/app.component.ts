@@ -6,10 +6,6 @@ import { AfterViewInit, Component, OnDestroy, OnInit } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit, AfterViewInit, OnDestroy  {
-  title = '';
-  jsonData: any;
-
-
   
   constructor(
   ) {

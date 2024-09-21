@@ -1,0 +1,49 @@
+<div class="container">
+    <!-- <app-button [btnLable]="'Create Blog'" [addClass]="'mb-3 pull-right'" (eventEmit)="addBlog()" ></app-button> -->
+
+    <ng-container>
+        <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col" class="hb__th-title">User Name</th>
+                <th scope="col">Email Id</th>
+                <th scope="col">Action</th>
+              </tr>
+            </thead>
+            <tbody *ngIf="showLoader">
+              <tr *ngFor="let l of [1,2,3,4,5,6]">
+                <th scope="row">
+                  <app-loader [contentStyle]="{height: '50px', margin:'0px !important'}"></app-loader>
+                </th>
+                <td>
+                  <app-loader [contentStyle]="{height: '50px', margin:'0px !important'}"></app-loader>
+                </td>
+                <td>
+                  <app-loader [contentStyle]="{height: '50px', margin:'0px !important'}"></app-loader>
+                </td>
+                <td>
+                  <app-loader [contentStyle]="{height: '50px', margin:'0px !important'}"></app-loader>
+                </td>
+                <td>
+                  <app-loader [contentStyle]="{height: '50px', margin:'0px !important'}"></app-loader>
+                </td>
+              </tr>
+            </tbody>
+            <tbody *ngIf="!showLoader">
+              <tr *ngFor="let data of userList; let i = index;">
+                <th scope="row">{{i+ 1}}</th>
+                <td>{{data.firstName}} {{data.lastName}}</td>
+                <td>
+                   {{data.email}}
+                </td>
+                <td class="hb_action-type">
+                    <span class="fa fa-trash ml-2" (click)="delete(data)"></span>
+                    <span class="fa fa-edit ml-2" (click)="editBlog(data, i)"></span>
+                </td>
+              </tr>
+              
+            </tbody>
+        </table>
+    </ng-container>
+</div>

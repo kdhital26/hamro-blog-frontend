@@ -1,13 +1,13 @@
+$hover-color:#116D6E;
+hr{
+    opacity: .09;
+}
+
 .main-container {
     img {
-        object-fit: contain;
-        height: 420px;
+        object-fit: contain !important;
+        height: fit-content !important;
     }
-
-    .hamro-blog-main-img{
-        width: 900px;
-    }
-
     .hb__comments {
         width: 90%;
         height: 120px;
@@ -71,12 +71,76 @@
     .hb__w-90{
         width: 90%;
     }
+
+    .hb__cb {
+        display: grid;
+        place-content: center;
+    }
+
+    .disable__rating{
+        pointer-events: none;
+        opacity: .6;
+    }
 }  
+
+//for mobile screen
+@media (max-width:770px) {
+    .hb__img-section{
+        text-align: center;
+        margin-left: 10px;
+        max-width: 349px;
+        display: flex;
+        justify-content: center;
+        margin: auto;
+    }
+
+    .hb__des-content{
+        margin: 15px;
+    }
+
+    .screen-size-wrapper{
+        margin-left: 50px;
+    }
+}
+
+.blogOn{
+    color: $hover-color;
+    
+}
+
+.user__section{
+    justify-content: center;
+    margin: 20px;
+}
+
+//for wider screen
+@media (min-width:770px) {
+    .hamro-blog-main-img{
+        width: 900px;
+    }
+}
 
 ::ng-deep table {
     width: 100% !important;
      tr:nth-child(1) > td {
         font-family: 'Montserrat-Bold';
      }
+}
+
+.hb-insight{
+    line-height: 0px;
+    span {
+        color: gray;
+        cursor: pointer;
+        span{
+            font-size: 14px;
+            margin-left: 8px;
+            color: #116D6E;
+        }
+    }
+    .hb__inisight-comment{
+        margin-left:20px;
+        margin-right: 20px;
+    }
 }
 

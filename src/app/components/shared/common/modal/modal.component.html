@@ -1,0 +1,34 @@
+<div class="p-2 m-2">
+    <section >
+        <h5>
+            <i class="fa fa-exclamation-circle" aria-hidden="true"></i> &nbsp; Login first, to bookmark this!
+        </h5>
+    </section>
+    <section class="w-100 errorMessage">
+        <small>
+            {{errorMessage}}
+        </small>
+    </section>
+    <form>
+        <div class="form-group">
+          <label for="exampleInputEmail1">First Name</label>
+          <input name="name" [ngClass]="{'border border-danger':  (setDanger && !user.firstName) ? true : ''}" type="text" [(ngModel)]="user.firstName" type="text" class="form-control" id="emailFisrtname" aria-describedby="firstnameHelp" placeholder="Enter First Name">
+        </div>
+        <div class="form-group">
+          <label for="lastname">Last Name</label>
+          <input name="lastName" [ngClass]="{'border border-danger':  (setDanger && !user.lastName) ? true : ''}" type="text" [(ngModel)]="user.lastName" type="text" class="form-control" id="lastName" placeholder="Enter Last Name">
+        </div>
+        <div class="form-group">
+            <label for="exampleInputEmail1">Email address</label>
+            <input name="email" [ngClass]="{'border border-danger':  (setDanger && !user.email) ? true : ''}" type="text" [(ngModel)]="user.email" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+          </div>
+          <div class="form-group">
+            <label for="exampleInputPassword1">Password</label>
+            <input name="pass" [ngClass]="{'border border-danger':  (setDanger && !user.password) ? true : ''}" type="text" [(ngModel)]="user.password" type="password" class="form-control" id="exampleInputPassword1" placeholder="Enter Password">
+          </div>
+
+            <app-button [showLoader]="showBtnLoader" (eventEmit)="submit()" [addClass]="'mt-2 w-100'" [btnLable]="'Submit'"></app-button>
+            <app-button (eventEmit)="close()" [addClass]="'mt-2 w-100'" [btnLable]="'Close'"></app-button>
+
+      </form>
+</div>

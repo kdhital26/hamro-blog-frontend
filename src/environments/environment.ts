@@ -4,11 +4,19 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'http://localhost:2000/api/',
-  filePath: 'http://localhost:2000/',
-  // apiUrl: 'https://hamro-blog.onrender.com/api/',
-  // filePath: 'https://hamro-blog.onrender.com/',
-  splitTag: '--SPLIT_HERE--'
+  
+   apiUrl: 'http://localhost:2000/api/',
+   filePath: 'http://localhost:2000/',
+
+  //prodcution server
+  //  apiUrl: 'https://hamro-blog.onrender.com/api/',
+  //  filePath: 'https://hamro-blog.onrender.com/',
+
+   //dev serve 
+   //for developer user only
+  //  apiUrl: 'https://zero426-dev-server.onrender.com/api/',
+  //  filePath: 'https://zero426-dev-server.onrender.com/',
+   splitTag: '--SPLIT_HERE--'
 };
 
 /*

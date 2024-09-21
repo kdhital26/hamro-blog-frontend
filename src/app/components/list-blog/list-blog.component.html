@@ -2,7 +2,13 @@
 
 
 <div *ngIf="!showBlogView" class="container">
-
+  
+  <div class="form-check" *ngIf="email === 'sagar.kabin26@gmail.com'">
+    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" (change)="setAllBlogs($event)">
+    <label class="form-check-label" for="flexCheckChecked">
+      Show All Blogs
+    </label>
+  </div>
     <app-button [btnLable]="'Create Blog'" [addClass]="'mb-3 pull-right'" (eventEmit)="addBlog()" ></app-button>
 
     <ng-container>
@@ -10,22 +16,41 @@
             <thead>
               <tr>
                 <th scope="col">#</th>
-                <th scope="col">Title</th>
+                <th scope="col" class="hb__th-title">Title</th>
                 <th scope="col">Description</th>
                 <th scope="col">Files</th>
                 <th scope="col">Action</th>
               </tr>
             </thead>
-            <tbody>
+            <tbody *ngIf="showLoader">
+              <tr *ngFor="let l of [1,2,3,4,5,6]">
+                <th scope="row">
+                  <app-loader [contentStyle]="{height: '50px', margin:'0px !important'}"></app-loader>
+                </th>
+                <td>
+                  <app-loader [contentStyle]="{height: '50px', margin:'0px !important'}"></app-loader>
+                </td>
+                <td>
+                  <app-loader [contentStyle]="{height: '50px', margin:'0px !important'}"></app-loader>
+                </td>
+                <td>
+                  <app-loader [contentStyle]="{height: '50px', margin:'0px !important'}"></app-loader>
+                </td>
+                <td>
+                  <app-loader [contentStyle]="{height: '50px', margin:'0px !important'}"></app-loader>
+                </td>
+              </tr>
+            </tbody>
+            <tbody *ngIf="!showLoader">
               <tr *ngFor="let data of blogListData; let i = index;">
                 <th scope="row">{{i+ 1}}</th>
                 <td>{{data.title}}</td>
                 <td>
-                    <div [innerHTML]="data.description.slice(0, 700) + '...'"></div>
+                    <div [innerHTML]="data.description.slice(0, 500) + '...'"></div>
                 </td>
                 <td>
-                    <div class="image-container mt-2" *ngFor="let imgScr of data.splitedFiles; let i = index">
-                        <img src="{{imgScr}}"  />
+                    <div class="image-container mt-2" *ngFor="let imgScr of data.splitedFiles; let i = index; let f = first;">
+                        <img *ngIf="f" alt="Loading..." src="{{imgScr}}"  />
                     </div>
                 </td>
     

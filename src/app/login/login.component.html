@@ -1,0 +1,46 @@
+<div class="container" [ngClass]="{'right-panel-active': isRightPanelActive}">
+    
+    <div class="form-container sign-up-container">
+        <form>
+            <div *ngIf="errorMessage" class="alert alert-danger w-100 mt-4" role="alert">
+                <small>{{errorMessage}}</small>
+              </div>
+            <h3>Create Account</h3>
+            <span>Use your details for registration</span>
+            <input class="form-control" [ngClass]="{'border border-danger':  (setDanger && !user.firstName) ? true : ''}" type="text" placeholder="First Name" name="firstname" [(ngModel)]="user.firstName" />
+            <input class="form-control" [ngClass]="{'border border-danger':  (setDanger && !user.lastName) ? true : ''}" type="text" placeholder="Last Name" name="lastname" [(ngModel)]="user.lastName" />
+            <input class="form-control" [ngClass]="{'border border-danger':  (setDanger && !user.email) ? true : ''}" type="email" placeholder="Email" name="emailval" [(ngModel)]="user.email" />
+            <input class="form-control" [ngClass]="{'border border-danger':  (setDanger && !user.password) ? true : ''}" type="password" placeholder="Password" name="pass" [(ngModel)]="user.password" />
+            <button (click)="signUp()">Sign Up</button>
+        </form>
+    </div>
+    <div class="form-container sign-in-container">
+        <form>
+            <div *ngIf="errorMessage" class="alert alert-danger w-100" role="alert">
+                <small>{{errorMessage}}</small>
+              </div>
+            <h1>Sign in</h1>
+            <span>Use your account</span>
+            <input class="form-control" type="email" placeholder="Email" name="email" [(ngModel)]="user.email" />
+            <input class="form-control" type="password" placeholder="Password" name="pass" [(ngModel)]="user.password" />
+            <a href="#">Forgot your password?</a>
+            <button (click)="login()">Sign In</button>
+        </form>
+    </div>
+    <div class="overlay-container">
+        <div class="overlay">
+            <div class="overlay-panel overlay-left">
+                <h1>Welcome Back!</h1>
+                <p>To keep connected with us please login with your informations.</p>
+                <button class="ghost" (click)="togglePanel()">Sign In</button>
+            </div>
+            <div class="overlay-panel overlay-right">
+                <h1>Hello, {{userName ? userName : 'User'}}</h1>
+                <p *ngIf="!message?.length"> Enter your
+                     details and start the journey with us</p>
+                <p *ngIf="message?.length">{{message}}</p>
+                <button class="ghost" (click)="togglePanel()">Sign Up</button>
+            </div>
+        </div>
+    </div>
+</div>
